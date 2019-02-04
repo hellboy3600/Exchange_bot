@@ -13,11 +13,8 @@ longPositionId = nil
 shortPositionId = nil
 
 function main() 
-	
-    on( "SMA", timeFrame, periodOfSMA1, nil ) 
-    on( "SMA", timeFrame, periodOfSMA2, nil ) 
-
-	-- Задаем обработчик события "NewCandle":
+	on( "SMA", timeFrame, periodOfSMA1, nil ) 
+	on( "SMA", timeFrame, periodOfSMA2, nil ) 
 	on( "NewCandle", timeFrame, onNewCandle )
 end
 
@@ -25,42 +22,42 @@ function onNewCandle( _openTime, _open, _max, _min, _close, _volume, _nextOpenPr
 	
 	on( "NewCandle", timeFrame, onNewCandle )
 
-    sma1_0 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA1, 0 )
-    if sma1_0 == nil then 
-        return
-    end
-    if sma1_0.value == nil then 
-        return
-    end
-    
-    valueOfSMA1_0 = tonumber(sma1_0.value)
+	sma1_0 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA1, 0 )
+	if sma1_0 == nil then 
+	   	return
+	end
+	if sma1_0.value == nil then 
+	    return
+	end
+	
+	valueOfSMA1_0 = tonumber(sma1_0.value)
 
-    sma2_0 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA2, 0 )
-    if sma2_0 == nil then
-        return
-    end
-    if sma2_0.value == nil then
-        return
-    end
+	sma2_0 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA2, 0 )
+	if sma2_0 == nil then
+	    return
+	end
+	if sma2_0.value == nil then
+	    return
+	end
 
-    valueOfSMA2_0 = tonumber(sma2_0.value)
-       
-    sma1_1 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA1, 1)
-    if sma1_1 == nil then
-        return
-    end
-    if sma1_1.value == nil then
-        return
-    end
-    valueOfSMA1_1 = tonumber(sma1_1.value) 
-    sma2_1 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA2, 1 )
-    if sma2_1 == nil then 
-        return
-    end    
-    if sma2_1.value == nil then
-        return
-    end
-    valueOfSMA2_1 = tonumber(sma2_1.value)
+	valueOfSMA2_0 = tonumber(sma2_0.value)
+	   
+	sma1_1 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA1, 1)
+	if sma1_1 == nil then
+	    return
+	end
+	if sma1_1.value == nil then
+	    return
+	end
+	valueOfSMA1_1 = tonumber(sma1_1.value) 
+	sma2_1 = getIndicatorValue( "SMA".."_"..timeFrame.."_"..periodOfSMA2, 1 )
+	if sma2_1 == nil then 
+	    return
+	end    
+	if sma2_1.value == nil then
+	    return
+	end
+	valueOfSMA2_1 = tonumber(sma2_1.value)
 
 	if longPositionId == nil then
 
