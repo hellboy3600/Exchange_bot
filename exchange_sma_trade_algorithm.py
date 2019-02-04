@@ -1,30 +1,15 @@
---[[
-timeFrame - Период свечи
-periodOfSMA1 - Период быстрой скользящей средней 
-periodOfSMA2 - Период медленной скользящей средней 
-stopLoss - Укажите величину стоп_лосс 
-takeProfit - Укажите величину тейк_профит
---]]
-
--- Период свечи, задаваемый в качестве параметра скрипта (см. строчку 2)
 timeFrame = %1
 
--- Период для расчета индикатора SMA, задаваемый в качестве параметра скрипта (см. строчку 3) 
 periodOfSMA1 = %2
 
--- Период для расчета индикатора SMA, задаваемый в качестве параметра скрипта (см. строчку 3) 
 periodOfSMA2 = %3
 
--- Стоп-лосс, задаваемый в качестве параметра скрипта (см. строчку 4)
 stopLoss = %4
 
--- Тейк-профит, задаваемый в качестве параметра скрипта (см. строчку 5)
 takeProfit = %5
 
--- Идентификатор открытой LONG-позиции (или 'nil', если LONG-позиция сейчас не открыта). 
 longPositionId = nil
 
--- Идентификатор открытой SHORT-позиции (или 'nil', если SHORT-позиция сейчас не открыта). 
 shortPositionId = nil
 
 function main() 
@@ -86,9 +71,7 @@ function onNewCandle( _openTime, _open, _max, _min, _close, _volume, _nextOpenPr
 			
 			longPositionId = openLong( 1 )
 			if longPositionId ~= nil then
-			    -- Устанавливаем стоп-лосс и тейк-профит
 				setSLTP( longPositionId, stopLoss, takeProfit ) 
-				-- Устанавливаем функцию, которая будет вызвана при закрытии позиции
 				onPositionClose( longPositionId, onLongPositionClose ) 
 			end
 		end			
@@ -110,15 +93,9 @@ function onNewCandle( _openTime, _open, _max, _min, _close, _volume, _nextOpenPr
 	end
 end
 
-
--- Callback-функция, которая вызывается, когда закрывается позиция LONG.
-
 function onLongPositionClose( _positionId )
 	longPositionId = nil
 end 
-
-
--- Callback-функция, которая вызывается, когда закрывается позиция SHORT.
 
 function onShortPositionClose( _positionId )
 	shortPositionId = nil
